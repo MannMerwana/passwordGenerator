@@ -1,6 +1,7 @@
 /* Implemented  password generator app to demonstrate useCase of useMemo,useCallback,useRef,useEffect,useState hooks  */
 import './App.css';
 import React,{useState,useEffect,useCallback,useMemo,useRef} from 'react';
+import PasswordGenerator from './components/PasswordGenerator';
 function App() {
 
   const [password,setPassword]=useState('');//state to handle change in password
@@ -46,6 +47,8 @@ function App() {
             //use window navigator clipboard  to access text of input 
             window.navigator.clipboard.writeText(password);
             passwordRef.current.select();//select method from useRef hook helps in selecting the text of the input.
+            alert('Password Copied to Clipboard,you can now use it !');
+            console.log(`Password Generated: ${passwordRef.current.value}`);
            const button= document.querySelector('button');
           button.style.boxShadow =' 0 5px 5px 5px rgb(1, 177, 33)'; /* Soft glow */
           button.style.fontFamily = 'Amaranth'
@@ -59,8 +62,9 @@ function App() {
                               <div className="mainContainer">
                                         <h1 className="heading">Random Password Generator</h1>
                                         <div className="passwordText">
-                                          <input
-                                            type="text"
+                                          <PasswordGenerator 
+                                        
+                                            type="password"
                                             className="password"
                                             value={password}
                                             placeholder="Password.."
